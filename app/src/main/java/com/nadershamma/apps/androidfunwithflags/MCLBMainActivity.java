@@ -33,9 +33,9 @@ public class MCLBMainActivity extends AppCompatActivity {
                 .registerOnSharedPreferenceChangeListener(preferencesChangeListener);
     }
 
-    private void MCLBscreenSetUp() {
-        if (MCLBgetScreenSize() == Configuration.SCREENLAYOUT_SIZE_LARGE ||
-                MCLBgetScreenSize() == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+    private void screenSetUp() {
+        if (getScreenSize() == Configuration.SCREENLAYOUT_SIZE_LARGE ||
+                getScreenSize() == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
             deviceIsPhone = false;
         }
         if (deviceIsPhone) {
@@ -52,7 +52,7 @@ public class MCLBMainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         this.setSharedPreferences();
-        this.MCLBscreenSetUp();
+        this.screenSetUp();
     }
 
     @Override
@@ -91,7 +91,7 @@ public class MCLBMainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public int MCLBgetScreenSize() {
+    public int getScreenSize() {
         return getResources().getConfiguration().screenLayout &
                 Configuration.SCREENLAYOUT_SIZE_MASK;
     }
