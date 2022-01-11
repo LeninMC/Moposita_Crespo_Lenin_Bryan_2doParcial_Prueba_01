@@ -15,14 +15,12 @@ import android.view.MenuItem;
 import com.nadershamma.apps.eventhandlers.PreferenceChangeListener;
 import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
 
-import java.util.Set;
-
-public class MainActivity extends AppCompatActivity {
+public class MCLBMainActivity extends AppCompatActivity {
     public static final String CHOICES = "pref_numberOfChoices";
     public static final String REGIONS = "pref_regionsToInclude_";
     private boolean deviceIsPhone = true;
     private boolean preferencesChanged = true;
-    private MainActivityFragment quizFragment;
+    private MCLBMainActivityFragment quizFragment;
     private QuizViewModel quizViewModel;
     private OnSharedPreferenceChangeListener preferencesChangeListener;
 
@@ -46,11 +44,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void MCLB_onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
         this.preferencesChangeListener = new PreferenceChangeListener(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.mclb_activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         this.setSharedPreferences();
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (preferencesChanged) {
-            this.quizFragment = (MainActivityFragment) getSupportFragmentManager()
+            this.quizFragment = (MCLBMainActivityFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.quizFragment);
             this.quizViewModel.setGuessRows(PreferenceManager.getDefaultSharedPreferences(this)
                     .getString(CHOICES, null));
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent preferencesIntent = new Intent(this, SettingsActivity.class);
+        Intent preferencesIntent = new Intent(this, MCLBSettingsActivity.class);
         startActivity(preferencesIntent);
         return super.onOptionsItemSelected(item);
     }
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 Configuration.SCREENLAYOUT_SIZE_MASK;
     }
 
-    public MainActivityFragment getQuizFragment() {
+    public MCLBMainActivityFragment getQuizFragment() {
         return this.quizFragment;
     }
 

@@ -1,11 +1,8 @@
 package com.nadershamma.apps.lifecyclehelpers;
 
 import android.arch.lifecycle.ViewModel;
-import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.util.Log;
-
-import com.nadershamma.apps.androidfunwithflags.MainActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;

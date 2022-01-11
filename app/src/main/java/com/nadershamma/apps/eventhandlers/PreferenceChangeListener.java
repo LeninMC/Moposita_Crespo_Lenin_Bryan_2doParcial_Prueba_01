@@ -4,17 +4,15 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.widget.Toast;
 
-import com.nadershamma.apps.androidfunwithflags.MainActivity;
-import com.nadershamma.apps.androidfunwithflags.MainActivityFragment;
+import com.nadershamma.apps.androidfunwithflags.MCLBMainActivity;
 import com.nadershamma.apps.androidfunwithflags.R;
-import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
 
 import java.util.Set;
 
 public class PreferenceChangeListener implements OnSharedPreferenceChangeListener {
-    private MainActivity mainActivity;
+    private MCLBMainActivity mainActivity;
 
-    public PreferenceChangeListener(MainActivity mainActivity) {
+    public PreferenceChangeListener(MCLBMainActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
 
@@ -24,7 +22,7 @@ public class PreferenceChangeListener implements OnSharedPreferenceChangeListene
 
         if (key.equals(this.mainActivity.getREGIONS())) {
             this.mainActivity.getQuizViewModel().setGuessRows(sharedPreferences.getString(
-                    MainActivity.CHOICES, null));
+                    MCLBMainActivity.CHOICES, null));
             this.mainActivity.getQuizFragment().resetQuiz();
         } else if (key.equals(this.mainActivity.getCHOICES())) {
             Set<String> regions = sharedPreferences.getStringSet(this.mainActivity.getREGIONS(),

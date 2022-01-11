@@ -31,7 +31,7 @@ import android.widget.TableRow;
 import com.nadershamma.apps.eventhandlers.GuessButtonListener;
 import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
 
-public class MainActivityFragment extends Fragment {
+public class MCLBMainActivityFragment extends Fragment {
 
     private SecureRandom random;
     private Animation shakeAnimation;
@@ -52,7 +52,7 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.mclb_fragment_main, container, false);
         OnClickListener guessButtonListener = new GuessButtonListener(this);
         TableLayout answersTableLayout = view.findViewById(R.id.answersTableLayout);
 

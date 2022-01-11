@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
 
-public class ResultsDialogFragment extends DialogFragment{
+public class MCLBResultsDialogFragment extends DialogFragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class ResultsDialogFragment extends DialogFragment{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try{
-                    MainActivityFragment quizFragment = (MainActivityFragment) getParentFragment();
+                    MCLBMainActivityFragment quizFragment = (MCLBMainActivityFragment) getParentFragment();
                     try{
                         quizFragment.resetQuiz();
                     }catch (Exception e){
