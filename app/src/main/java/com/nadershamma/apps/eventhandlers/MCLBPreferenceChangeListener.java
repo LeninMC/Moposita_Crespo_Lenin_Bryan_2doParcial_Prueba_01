@@ -9,10 +9,10 @@ import com.nadershamma.apps.androidfunwithflags.R;
 
 import java.util.Set;
 
-public class PreferenceChangeListener implements OnSharedPreferenceChangeListener {
+public class MCLBPreferenceChangeListener implements OnSharedPreferenceChangeListener {
     private MCLBMainActivity mainActivity;
 
-    public PreferenceChangeListener(MCLBMainActivity mainActivity) {
+    public MCLBPreferenceChangeListener(MCLBMainActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
 

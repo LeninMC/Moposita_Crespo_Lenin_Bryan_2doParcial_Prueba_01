@@ -12,8 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.nadershamma.apps.eventhandlers.PreferenceChangeListener;
-import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
+import com.nadershamma.apps.eventhandlers.MCLBPreferenceChangeListener;
+import com.nadershamma.apps.lifecyclehelpers.MCLBQuizViewModel;
 
 public class MCLBMainActivity extends AppCompatActivity {
     public static final String CHOICES = "pref_numberOfChoices";
@@ -21,7 +21,7 @@ public class MCLBMainActivity extends AppCompatActivity {
     private boolean deviceIsPhone = true;
     private boolean preferencesChanged = true;
     private MCLBMainActivityFragment quizFragment;
-    private QuizViewModel quizViewModel;
+    private MCLBQuizViewModel quizViewModel;
     private OnSharedPreferenceChangeListener preferencesChangeListener;
 
     private void setSharedPreferences() {
@@ -33,9 +33,9 @@ public class MCLBMainActivity extends AppCompatActivity {
                 .registerOnSharedPreferenceChangeListener(preferencesChangeListener);
     }
 
-    private void screenSetUp() {
-        if (getScreenSize() == Configuration.SCREENLAYOUT_SIZE_LARGE ||
-                getScreenSize() == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+    private void MCLBscreenSetUp() {
+        if (MCLBgetScreenSize() == Configuration.SCREENLAYOUT_SIZE_LARGE ||
+                MCLBgetScreenSize() == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
             deviceIsPhone = false;
         }
         if (deviceIsPhone) {
@@ -46,13 +46,13 @@ public class MCLBMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
-        this.preferencesChangeListener = new PreferenceChangeListener(this);
+        this.quizViewModel = ViewModelProviders.of(this).get(MCLBQuizViewModel.class);
+        this.preferencesChangeListener = new MCLBPreferenceChangeListener(this);
         setContentView(R.layout.mclb_activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         this.setSharedPreferences();
-        this.screenSetUp();
+        this.MCLBscreenSetUp();
     }
 
     @Override
@@ -91,7 +91,7 @@ public class MCLBMainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public int getScreenSize() {
+    public int MCLBgetScreenSize() {
         return getResources().getConfiguration().screenLayout &
                 Configuration.SCREENLAYOUT_SIZE_MASK;
     }
@@ -100,7 +100,7 @@ public class MCLBMainActivity extends AppCompatActivity {
         return this.quizFragment;
     }
 
-    public QuizViewModel getQuizViewModel() {
+    public MCLBQuizViewModel getQuizViewModel() {
         return quizViewModel;
     }
 

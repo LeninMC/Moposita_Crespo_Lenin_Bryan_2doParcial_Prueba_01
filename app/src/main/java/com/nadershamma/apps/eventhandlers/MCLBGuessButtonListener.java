@@ -9,13 +9,13 @@ import android.widget.Button;
 import com.nadershamma.apps.androidfunwithflags.MCLBMainActivityFragment;
 import com.nadershamma.apps.androidfunwithflags.R;
 import com.nadershamma.apps.androidfunwithflags.MCLBResultsDialogFragment;
-import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
+import com.nadershamma.apps.lifecyclehelpers.MCLBQuizViewModel;
 
-public class GuessButtonListener implements OnClickListener {
+public class MCLBGuessButtonListener implements OnClickListener {
     private MCLBMainActivityFragment mainActivityFragment;
     private Handler handler;
 
-    public GuessButtonListener(MCLBMainActivityFragment mainActivityFragment) {
+    public MCLBGuessButtonListener(MCLBMainActivityFragment mainActivityFragment) {
         this.mainActivityFragment = mainActivityFragment;
         this.handler = new Handler();
     }
@@ -36,13 +36,13 @@ public class GuessButtonListener implements OnClickListener {
             this.mainActivityFragment.disableButtons();
 
             if (this.mainActivityFragment.getQuizViewModel().getCorrectAnswers()
-                    == QuizViewModel.getFlagsInQuiz()) {
+                    == MCLBQuizViewModel.getFlagsInQuiz()) {
                 MCLBResultsDialogFragment quizResults = new MCLBResultsDialogFragment();
                 quizResults.setCancelable(false);
                 try {
                     quizResults.show(this.mainActivityFragment.getChildFragmentManager(), "Quiz Results");
                 } catch (NullPointerException e) {
-                    Log.e(QuizViewModel.getTag(),
+                    Log.e(MCLBQuizViewModel.getTag(),
                             "GuessButtonListener: this.mainActivityFragment.getFragmentManager() " +
                                     "returned null",
                             e);

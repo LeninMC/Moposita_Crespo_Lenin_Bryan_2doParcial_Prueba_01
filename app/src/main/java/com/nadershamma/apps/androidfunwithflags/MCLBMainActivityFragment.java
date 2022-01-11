@@ -28,8 +28,8 @@ import android.widget.TextView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import com.nadershamma.apps.eventhandlers.GuessButtonListener;
-import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
+import com.nadershamma.apps.eventhandlers.MCLBGuessButtonListener;
+import com.nadershamma.apps.lifecyclehelpers.MCLBQuizViewModel;
 
 public class MCLBMainActivityFragment extends Fragment {
 
@@ -40,12 +40,12 @@ public class MCLBMainActivityFragment extends Fragment {
     private ImageView flagImageView;
     private TableRow[] guessTableRows;
     private TextView answerTextView;
-    private QuizViewModel quizViewModel;
+    private MCLBQuizViewModel quizViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.quizViewModel = ViewModelProviders.of(getActivity()).get(QuizViewModel.class);
+        this.quizViewModel = ViewModelProviders.of(getActivity()).get(MCLBQuizViewModel.class);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MCLBMainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.mclb_fragment_main, container, false);
-        OnClickListener guessButtonListener = new GuessButtonListener(this);
+        OnClickListener guessButtonListener = new MCLBGuessButtonListener(this);
         TableLayout answersTableLayout = view.findViewById(R.id.answersTableLayout);
 
         this.random = new SecureRandom();
@@ -74,7 +74,7 @@ public class MCLBMainActivityFragment extends Fragment {
                     this.guessTableRows[i] = (TableRow) answersTableLayout.getChildAt(i);
                 }
             } catch (ArrayStoreException e) {
-                Log.e(QuizViewModel.getTag(),
+                Log.e(MCLBQuizViewModel.getTag(),
                         "Error getting button rows on loop #" + String.valueOf(i), e);
             }
         }
@@ -86,7 +86,7 @@ public class MCLBMainActivityFragment extends Fragment {
         }
 
         this.questionNumberTextView.setText(
-                getString(R.string.question, 1, QuizViewModel.getFlagsInQuiz()));
+                getString(R.string.question, 1, MCLBQuizViewModel.getFlagsInQuiz()));
         return view;
     }
 
@@ -110,7 +110,7 @@ public class MCLBMainActivityFragment extends Fragment {
 
         int flagCounter = 1;
         int numberOfFlags = this.quizViewModel.getFileNameList().size();
-        while (flagCounter <= QuizViewModel.getFlagsInQuiz()) {
+        while (flagCounter <= MCLBQuizViewModel.getFlagsInQuiz()) {
             int randomIndex = this.random.nextInt(numberOfFlags);
 
             String filename = this.quizViewModel.getFileNameList().get(randomIndex);
@@ -134,14 +134,14 @@ public class MCLBMainActivityFragment extends Fragment {
         answerTextView.setText("");
 
         questionNumberTextView.setText(getString(R.string.question,
-                (quizViewModel.getCorrectAnswers() + 1), QuizViewModel.getFlagsInQuiz()));
+                (quizViewModel.getCorrectAnswers() + 1), MCLBQuizViewModel.getFlagsInQuiz()));
 
         try (InputStream stream = assets.open(region + "/" + nextImage + ".png")) {
             Drawable flag = Drawable.createFromStream(stream, nextImage);
             flagImageView.setImageDrawable(flag);
             animate(false);
         } catch (IOException e) {
-            Log.e(QuizViewModel.getTag(), "Error Loading " + nextImage, e);
+            Log.e(MCLBQuizViewModel.getTag(), "Error Loading " + nextImage, e);
         }
 
         this.quizViewModel.shuffleFilenameList();
@@ -211,7 +211,7 @@ public class MCLBMainActivityFragment extends Fragment {
         return answerTextView;
     }
 
-    public QuizViewModel getQuizViewModel() {
+    public MCLBQuizViewModel getQuizViewModel() {
         return quizViewModel;
     }
 }

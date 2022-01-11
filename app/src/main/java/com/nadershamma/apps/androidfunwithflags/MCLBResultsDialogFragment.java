@@ -9,7 +9,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
+import com.nadershamma.apps.lifecyclehelpers.MCLBQuizViewModel;
 
 public class MCLBResultsDialogFragment extends DialogFragment{
 
@@ -21,7 +21,7 @@ public class MCLBResultsDialogFragment extends DialogFragment{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final QuizViewModel quizViewModel = ViewModelProviders.of(getActivity()).get(QuizViewModel.class);
+        final MCLBQuizViewModel quizViewModel = ViewModelProviders.of(getActivity()).get(MCLBQuizViewModel.class);
         int totalGuesses = quizViewModel.getTotalGuesses();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(
