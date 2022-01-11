@@ -22,7 +22,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <include
-        layout="@layout/mclb_content_main"
-        android:theme="@style/AppTheme" />
+        layout="@layout/mclb_content_main"/>
 
 </android.support.design.widget.CoordinatorLayout>
