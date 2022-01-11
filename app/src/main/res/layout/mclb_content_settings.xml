@@ -4,5 +4,5 @@
     android:name="com.nadershamma.apps.androidfunwithflags.MCLBSettingsActivityFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout="@layout/MCLBfragment_settings" />
+    tools:layout="@layout/mclb_fragment_settings" />
 
